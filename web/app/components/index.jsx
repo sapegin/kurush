@@ -3,13 +3,23 @@ define(function(require, exports, module) {
 
 	var React = require('react');
 	var Tasks = require('components/tasks');
+	var Task = require('models/task');
 
 	/**
 	 * @jsx React.DOM
 	 */
 	module.exports = React.createExtendedClass({
+		createTask: function() {
+			this.props.tasks.add(new Task({new: true}));  // @todo create?
+		},
+
 		render: function() {
-			return (<Tasks collection={this.props.tasks} />);
+			return (
+				<div>
+					<button onClick={this.createTask}>Create</button>
+					<Tasks collection={this.props.tasks}/>
+				</div>
+			);
 		}
 	});
 });

@@ -9,7 +9,7 @@ define(function(require, exports, module) {
 	module.exports = React.createExtendedClass({
 		getInitialState: function() {
 			return {
-				edit: false
+				edit: this.get('new')
 			};
 		},
 
