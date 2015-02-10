@@ -6,6 +6,8 @@ define(function(require, exports, module) {
 	var Tasks = require('collections/tasks');
 	var IndexView = React.createFactory(require('components/index'));
 
+	Tasks.getInstance().fetch();
+
 	module.exports = Backbone.Router.extend({
 		routes: {
 			'': 'index'

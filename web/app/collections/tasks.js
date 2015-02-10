@@ -6,7 +6,8 @@ define(function(require, exports, module) {
 	var Task = require('models/task');
 
 	var Tasks = Backbone.Collection.extend({
-		model: Task
+		model: Task,
+		localStorage: new Backbone.LocalStorage('Tasks')
 	});
 
 	// Singleton

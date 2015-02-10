@@ -20,7 +20,10 @@ define(function(require, exports, module) {
 		save: function(event) {
 			event.preventDefault();
 			var values = this.getFormData(event.target);
-			this.model().set(values);
+			values.new = false;
+			var model = this.model();
+			model.set(values);
+			model.save();
 			this.toggleEditMode();
 		},
 

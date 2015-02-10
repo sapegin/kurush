@@ -1,4 +1,4 @@
-require(['app', 'router', 'react', 'react.backbone', 'util/react-extras'], function(app, Router, React) {
+require(['app', 'router', 'react', 'backboneLocalStorage', 'reactBackbone', 'util/react-extras'], function(app, Router, React) {
 	'use strict';
 
 	app.router = new Router();
