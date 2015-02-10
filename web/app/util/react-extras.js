@@ -12,19 +12,17 @@ define(function(require, exports, module) {
 		},
 
 		getFormData: function(form) {
-			var ReactNodeIdToRefName = {};
-			for (var refName in this.refs) {
-				ReactNodeIdToRefName[this.refs[refName]._rootNodeID] = refName;
-			}
-
-			var fields = slice.call(form.elements);
 			var values = {};
-			fields.forEach(function(field) {
-				var refName = ReactNodeIdToRefName[field.getAttribute('data-reactid')];
-				if (!refName) return;
-				values[refName] = this.refs[refName].getDOMNode().value
-			}.bind(this));
+			_.each(this.refs, function(ref, name) {
+				var node = ref.getDOMNode();
+				if (!form.contains(node)) return;
+				values[name] = 'value' in node ? node.value : ref.getValue();
+			});
 			return values;
+		},
+
+		getAttrs: function() {
+			return _.omit(this.props, _.keys(this.constructor.defaultProps));
 		}
 	};
 

@@ -1,3 +1,5 @@
+// Author: Artem Sapegin http://sapegin.me, 2015
+
 define(function(require, exports, module) {
 	'use strict';
 

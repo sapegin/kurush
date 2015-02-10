@@ -1,0 +1,14 @@
+// Author: Artem Sapegin http://sapegin.me, 2015
+
+define(function(require, exports, module) {
+	'use strict';
+
+	var Backbone = require('backbone');
+
+	module.exports = Backbone.Model.extend({
+		defaults: {
+			name: ''
+		}
+	});
+
+});
