@@ -98,6 +98,13 @@ define(function(require, exports, module) {
 			return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(string);
 		}
 
+	}, {
+		STATE_NEW: 1,
+		STATE_NOT_STARTED: 2,
+		STATE_IN_PROGRESS: 3,
+		STATE_SUSPENDED: 4,
+		STATE_UNPAID: 5,
+		STATE_CLOSED: 6
 	});
 
 });

@@ -10,7 +10,7 @@ define(function(require, exports, module) {
 	 */
 	module.exports = React.createExtendedClass({
 		createTask: function() {
-			this.props.tasks.create({new: true});
+			this.props.tasks.create({new: true}, {at: 0});
 		},
 
 		render: function() {

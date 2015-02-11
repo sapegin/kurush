@@ -23,8 +23,6 @@ define(function(require, exports, module) {
 			this.setState({edit: !this.state.edit});
 		},
 
-
-
 		save: function(event) {
 			event.preventDefault();
 			var values = this.getFormData(event.target);
