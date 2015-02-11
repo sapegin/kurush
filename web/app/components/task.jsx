@@ -30,7 +30,7 @@ define(function(require, exports, module) {
 			var values = this.getFormData(event.target);
 			values.new = false;
 			var model = this.model();
-			model.set(values);
+			model.set(values, {update: true});
 			model.save();
 			this.toggleEditMode();
 		},
