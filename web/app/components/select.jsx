@@ -3,7 +3,7 @@
 define(function(require, exports, module) {
 	'use strict';
 
-	var _ = require('underscore');
+	var _ = require('lodash');
 	var React = require('react');
 
 	/**

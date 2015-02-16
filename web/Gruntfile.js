@@ -21,6 +21,20 @@ module.exports = function(grunt) {
 				]
 			}
 		},
+		mochaTest: {
+			test: {
+				options: {
+					reporter: 'spec',
+					require: [
+						'./tests/mochasetup',
+						'coffee-script/register'
+					]
+				},
+				src: [
+					'tests/specs/*.coffee'
+				]
+			}
+		},
 		watch: {
 			react: {
 				options: {
@@ -33,4 +47,5 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('default', ['styles']);
+	grunt.registerTask('test', ['mochaTest']);
 };

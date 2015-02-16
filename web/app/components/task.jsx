@@ -3,7 +3,7 @@
 define(function(require, exports, module) {
 	'use strict';
 
-	var _ = require('underscore');
+	var _ = require('lodash');
 	var React = require('react');
 	var Combobox = require('components/combobox');
 	var Select = require('components/select');
@@ -27,6 +27,7 @@ define(function(require, exports, module) {
 			event.preventDefault();
 			var values = this.getFormData(event.target);
 			values.new = false;
+			values.state = +values.state;
 			var model = this.model();
 			model.set(values, {update: true});
 			model.save();

@@ -3,7 +3,7 @@
 define(function(require, exports, module) {
 	'use strict';
 
-	var _ = require('underscore');
+	var _ = require('lodash');
 	var moment = require('moment');
 	var Backbone = require('backbone');
 	var Projects = require('collections/projects').getInstance();
@@ -32,6 +32,8 @@ define(function(require, exports, module) {
 		},
 
 		initialize: function(attributes) {
+			attributes = attributes || {};
+
 			if (!attributes.created) {
 				this.set('created', this.now());
 			}
@@ -47,7 +49,7 @@ define(function(require, exports, module) {
 		},
 
 		getStateIdByName: function(name) {
-			return _.invert(this.states)[name];
+			return +_.invert(this.states)[name];
 		},
 
 		getSatesList: function() {
@@ -97,7 +99,6 @@ define(function(require, exports, module) {
 		isUuid: function(string) {
 			return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(string);
 		}
-
 	}, {
 		STATE_NEW: 1,
 		STATE_NOT_STARTED: 2,
