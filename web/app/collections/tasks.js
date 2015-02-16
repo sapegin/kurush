@@ -30,7 +30,8 @@ define(function(require, exports, module) {
 		/**
 		 * Order:
 		 *   - has new attribute: always first
-		 *   - is in progress, created
+		 *   - is in progress, created, etc.
+		 *   - by change date
 		 */
 		comparator: function(a, b) {
 			// New tasks always first
