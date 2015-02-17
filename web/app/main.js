@@ -1,4 +1,4 @@
-require(['app', 'router'], function(app, Router) {
+require(['app', 'router', 'backbone'], function(app, Router, Backbone) {
 	'use strict';
 
 	app.router = new Router();

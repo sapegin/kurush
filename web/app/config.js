@@ -1,6 +1,9 @@
 // Author: Artem Sapegin http://sapegin.me, 2015
 
+/*global module:true*/
 (function() {
+	'use strict';
+
 	var config = {
 		paths: {
 			lodash: '../bower_components/lodash/lodash',

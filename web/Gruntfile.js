@@ -8,6 +8,23 @@ module.exports = function(grunt) {
 			author: 'Artem Sapegin, http://sapegin.me',
 			bower: false
 		},
+		jshint: {
+			options: {
+				jshintrc: true
+			},
+			files: [
+				'app/**/*.js',
+				'!app/components/*.js'
+			]
+		},
+		coffeelint: {
+			options: {
+				configFile: 'coffeelint.json'
+			},
+			tests: [
+				'tests/specs/*.coffee'
+			]
+		},
 		react: {
 			views: {
 				files: [
@@ -47,5 +64,5 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('default', ['styles']);
-	grunt.registerTask('test', ['mochaTest']);
+	grunt.registerTask('test', ['jshint', 'coffeelint', 'mochaTest']);
 };

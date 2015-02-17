@@ -4,8 +4,6 @@ define(function(require, exports, module) {
 	var _ = require('lodash');
 	var React = require('react');
 
-	var slice = Array.prototype.slice;
-
 	React.KurushMixin = {
 		get: function(field) {
 			return this.props.model.get(field);

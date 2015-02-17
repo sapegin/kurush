@@ -43,7 +43,7 @@ define(function(require, exports, module) {
 			var bState = b.get('state');
 
 			// Same state: newest first
-			if (aState == bState) {
+			if (aState === bState) {
 				if (a.get('changed') > b.get('changed')) {
 					return -1;
 				}
