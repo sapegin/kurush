@@ -1,8 +1,8 @@
-require(['app', 'router', 'backbone'], function(app, Router, Backbone) {
+require(['router', 'backbone', 'bootstrap'], function(Router, Backbone) {
 	'use strict';
 
-	app.router = new Router();
+	new Router();
 
 	// Trigger the initial route and enable HTML5 History API support, set the root folder.
-	Backbone.history.start({pushState: true, root: app.root});
+	Backbone.history.start({pushState: true, root: '/'});
 });

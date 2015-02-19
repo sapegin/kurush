@@ -9,7 +9,7 @@
 			lodash: '../bower_components/lodash/lodash',
 			jquery: '../bower_components/jquery/dist/jquery',
 			backbone: '../bower_components/backbone/backbone',
-			react: '../bower_components/react/react',
+			react: '../bower_components/react/react-with-addons',
 			backboneLocalStorage: '../bower_components/backbone.localStorage/backbone.localStorage',
 			reactBackbone: '../bower_components/react.backbone/react.backbone',
 			moment: '../bower_components/moment/moment'
@@ -22,11 +22,6 @@
 		},
 
 		deps: [
-			// Mixins and plugins
-			'backboneLocalStorage',
-			'reactBackbone',
-			'util/react-extras',
-			// App
 			'main'
 		]
 	};

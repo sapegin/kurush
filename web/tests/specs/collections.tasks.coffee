@@ -5,9 +5,9 @@ moment = require 'moment'
 
 describe 'collections/tasks', ->
 	before (done) ->
-		requireModule ['collections/tasks', 'models/task'], ['Tasks', 'Task'], done
+		requireModule {'collections/tasks': 'Tasks', 'models/task': 'Task'}, done
 
-	beforeEach ->
+	beforeEach (done) ->
 		Tasks.getInstance().reset([
 			{name: 'Task 1', project: 'Project 1', state: Task.STATE_UNPAID, changed: moment('2014-01-12').unix()},
 			{name: 'Task 3', project: 'Project 1', state: Task.STATE_IN_PROGRESS, changed: moment('2014-03-12').unix()},
@@ -22,8 +22,9 @@ describe 'collections/tasks', ->
 			{name: 'Task 11', project: 'Project 3', state: Task.STATE_NEW, changed: moment('2014-12-12').unix(), new: true},
 			{name: 'Task 12', project: 'Project 1', state: Task.STATE_NOT_STARTED, changed: moment('2014-01-12').unix()}
 		])
+		done()
 
-	it 'should sort collection', ->
+	it 'should sort collection', (done) ->
 		#_.each Tasks.getInstance().models, (task) ->
 		#	console.log [task.get('name'), task.getStateName(), moment.unix(task.get('changed')).format('YYYY-MM-DD')].join('\t')
 		tasks = _.pluck(Tasks.getInstance().toJSON(), 'name')
@@ -41,13 +42,11 @@ describe 'collections/tasks', ->
 			'Task 1',
 			'Task 7'
 			])
+		done()
 
-	it 'should create new model', ->
+	it 'should create new model', (done) ->
 		tasks = Tasks.getInstance()
 		length = tasks.length
 		tasks.create({name: 'Do someting'})
 		expect(tasks.length).to.equal(length + 1)
-
-
-
-# sort items
+		done()

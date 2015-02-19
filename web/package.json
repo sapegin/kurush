@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "devDependencies": {
-    "atomus": "~0.1.13",
     "chai": "~2.0.0",
     "coffee-script": "~1.9.0",
     "coffeelint": "~1.8.1",
@@ -15,6 +14,8 @@
     "grunt-mocha-test": "~0.12.7",
     "grunt-modernizr": "~0.6.0",
     "grunt-react": "~0.10.0",
+    "jsdom": "~3.1.1",
+    "localStorage": "~1.0.3",
     "lodash": "~3.2.0",
     "mocha": "~2.1.0",
     "moment": "~2.9.0",
