@@ -63,6 +63,6 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['styles']);
-	grunt.registerTask('test', ['jshint', 'coffeelint', 'mochaTest']);
+	grunt.registerTask('default', ['styles', 'react']);
+	grunt.registerTask('test', ['jshint', 'coffeelint', 'react', 'mochaTest']);
 };
