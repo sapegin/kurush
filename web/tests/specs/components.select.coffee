@@ -31,5 +31,5 @@ describe 'components/select', ->
 	it 'getValue() should return value of selected option', (done) ->
 		[element, node] = render()
 		value = element.getValue()
-		expect(value).to.equal(defaultProps.value);
+		expect(value).to.equal(defaultProps.value)
 		done()
