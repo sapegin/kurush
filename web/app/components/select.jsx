@@ -10,6 +10,12 @@ define(function(require, exports, module) {
 	 * @jsx React.DOM
 	 */
 	module.exports = React.createExtendedClass({
+		displayName: 'Select',
+		propTypes: {
+			items: React.PropTypes.array,
+			value: React.PropTypes.string
+		},
+
 		getDefaultProps: function() {
 			return {
 				items: {},

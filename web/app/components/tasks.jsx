@@ -10,6 +10,11 @@ define(function(require, exports, module) {
 	 * @jsx React.DOM
 	 */
 	module.exports = React.createExtendedClass({
+		displayName: 'Tasks',
+		propTypes: {
+			collection: React.PropTypes.object.isRequired,
+		},
+
 		render: function() {
 			var tasks = this.collection().map(function(task) {
 				return <Task model={task} key={task.cid}/>

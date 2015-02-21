@@ -9,6 +9,11 @@ define(function(require, exports, module) {
 	 * @jsx React.DOM
 	 */
 	module.exports = React.createExtendedClass({
+		displayName: 'Index',
+		propTypes: {
+			tasks: React.PropTypes.object.isRequired,
+		},
+
 		createTask: function() {
 			this.props.tasks.create({new: true}, {at: 0});
 		},
