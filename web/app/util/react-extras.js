@@ -39,4 +39,6 @@ define(function(require, exports, module) {
 		return React.createBackboneClass(spec);
 	};
 
+	module.exports = React;
+
 });
