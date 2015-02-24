@@ -4,7 +4,11 @@
 
 describe 'components/select', ->
 	defaultProps = {
-		items: ['one', 'two', 'three'],
+		items: {
+			1: 'one',
+			2: 'two',
+			3: 'three'
+		},
 		value: '1'
 	}
 
@@ -25,7 +29,7 @@ describe 'components/select', ->
 	it 'should have <option> tag for every item', (done) ->
 		[element, node] = render()
 		numberOfOptions = node.querySelectorAll('select option').length
-		expect(numberOfOptions).to.equal(defaultProps.items.length)
+		expect(numberOfOptions).to.equal(Object.keys(defaultProps.items).length)
 		done()
 
 	it 'getValue() should return value of selected option', (done) ->

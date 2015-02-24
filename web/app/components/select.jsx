@@ -12,8 +12,8 @@ define(function(require, exports, module) {
 	module.exports = React.createExtendedClass({
 		displayName: 'Select',
 		propTypes: {
-			items: React.PropTypes.array,
-			value: React.PropTypes.string
+			items: React.PropTypes.object,
+			value: React.PropTypes.any
 		},
 
 		getDefaultProps: function() {

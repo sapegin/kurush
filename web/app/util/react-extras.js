@@ -13,8 +13,13 @@ define(function(require, exports, module) {
 			var values = {};
 			_.each(this.refs, function(ref, name) {
 				var node = ref.getDOMNode();
-				if (!form.contains(node)) return;
-				values[name] = 'value' in node ? node.value : ref.getValue();
+				if (!node.name || !form.contains(node)) return;
+				if ('value' in node) {
+					values[name] = node.value;
+				}
+				else if ('getValue' in ref) {
+					values[name] = ref.getValue();
+				}
 			});
 			return values;
 		},

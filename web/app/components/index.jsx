@@ -3,7 +3,6 @@ define(function(require, exports, module) {
 
 	var React = require('react');
 	var Tasks = require('components/tasks');
-	var Task = require('models/task');
 
 	/**
 	 * @jsx React.DOM
@@ -21,7 +20,7 @@ define(function(require, exports, module) {
 		render: function() {
 			return (
 				<div>
-					<button onClick={this.createTask}>Create</button>
+					<button onClick={this.createTask} ref="create">Create</button>
 					<Tasks collection={this.props.tasks}/>
 				</div>
 			);

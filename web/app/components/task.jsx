@@ -55,7 +55,7 @@ define(function(require, exports, module) {
 			return (
 				<li>
 					{this.get('name')}, {model.getProjectName()}, {model.getStateName()}, {model.get('summ')}, {model.get('rate')}, {timeSpent} hrs
-					<button onClick={this.toggleEditMode}>Edit</button>
+					<button onClick={this.toggleEditMode} ref="edit">Edit</button>
 				</li>
 			);
 		},
@@ -67,7 +67,7 @@ define(function(require, exports, module) {
 
 			return (
 				<li>
-					<form onSubmit={this.save}>
+					<form onSubmit={this.save} ref="form">
 						<div>
 							<input type="text" defaultValue={model.get('name')} ref="name" name="name" placeholder="Title" tabIndex="1" autoFocus/>
 							<Combobox items={projects} value={model.getProjectName()} ref="project" placeholder="Project" name="project" tabIndex="2"/>
