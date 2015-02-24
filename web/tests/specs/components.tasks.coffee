@@ -3,7 +3,7 @@
 'use strict'
 
 describe 'components/tasks', ->
-	render = () ->
+	render = ->
 		renderReactComponent Tasks, {collection: TasksCollection.getInstance()}
 
 	before (done) ->

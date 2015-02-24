@@ -3,7 +3,7 @@
 'use strict'
 
 describe 'components/index', ->
-	render = () ->
+	render = ->
 		renderReactComponent Index, {tasks: Tasks.getInstance()}
 
 	before (done) ->
