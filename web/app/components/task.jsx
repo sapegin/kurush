@@ -5,6 +5,7 @@ define(function(require, exports, module) {
 
 	var _ = require('lodash');
 	var React = require('react');
+	var Dispatcher = require('dispatcher');
 	var Combobox = require('components/combobox');
 	var Select = require('components/select');
 	var Projects = require('collections/projects').getInstance();
@@ -33,9 +34,10 @@ define(function(require, exports, module) {
 			var values = this.getFormData(event.target);
 			values.new = false;
 			values.state = +values.state;
-			var model = this.model();
-			model.set(values, {update: true});
-			model.save();
+			Dispatcher.actions.updateTask({
+				task: this.model(),
+				data: values
+			});
 			this.toggleEditMode();
 		},
 

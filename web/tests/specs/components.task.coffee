@@ -10,18 +10,18 @@ describe 'components/task', ->
 
 	createModel = (props) ->
 		props = _.merge({name: 'Task 1', project: 'Project 1', state: Task.STATE_IN_PROGRESS}, props)
-		Tasks.getInstance().create(props)
+		TasksStore.create(props)
 
 	hasForm = (node) ->
 		!!node.querySelectorAll('form').length
 
 	before (done) ->
-		requireModule {'components/task': 'Task', 'collections/tasks': 'Tasks', 'react': 'React'}, ->
+		requireModule {'components/task': 'Task', 'stores/tasks': 'TasksStore', 'react': 'React'}, ->
 			global.TestUtils = React.addons.TestUtils
 			done()
 
 	beforeEach (done) ->
-		Tasks.getInstance().reset()
+		TasksStore.reset()
 		done()
 
 	it 'should be component of type Task', (done) ->

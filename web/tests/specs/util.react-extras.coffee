@@ -6,15 +6,15 @@
 
 describe 'util/react-extras', ->
 	getModel = ->
-		TasksCollection.getInstance().create({name: 'Task 1', project: 'Project 1', notes: 'More ponies.', new: true})
+		TasksStore.create({name: 'Task 1', project: 'Project 1', notes: 'More ponies.', new: true})
 
 	before (done) ->
-		requireModule {'util/react-extras': 'React', 'components/task': 'Task', 'components/select': 'Select', 'collections/tasks': 'Tasks'}, ->
+		requireModule {'util/react-extras': 'React', 'components/task': 'Task', 'components/select': 'Select', 'stores/tasks': 'Tasks'}, ->
 			global.TestUtils = React.addons.TestUtils
 			done()
 
 	beforeEach (done) ->
-		TasksCollection.getInstance().reset()
+		TasksStore.reset()
 		done()
 
 	it 'mixins should be available from React namespace', (done) ->

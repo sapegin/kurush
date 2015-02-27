@@ -4,10 +4,10 @@
 
 describe 'components/index', ->
 	render = ->
-		renderReactComponent Index, {tasks: Tasks.getInstance()}
+		renderReactComponent Index, {tasks: TasksStore}
 
 	before (done) ->
-		requireModule {'components/index': 'Index', 'collections/tasks': 'Tasks', 'react': 'React'}, ->
+		requireModule {'components/index': 'Index', 'stores/tasks': 'TasksStore', 'react': 'React'}, ->
 			global.TestUtils = React.addons.TestUtils
 			done()
 
@@ -20,13 +20,13 @@ describe 'components/index', ->
 	it 'should create new task when Create button clicked', (done) ->
 		[element, node] = render()
 
-		oldNumberOfTasks = Tasks.getInstance().length
+		oldNumberOfTasks = TasksStore.length
 
 		createButton = element.refs.create.getDOMNode()
 		TestUtils.Simulate.click(createButton)
 
-		numberOfTasks = Tasks.getInstance().length
-		model = Tasks.getInstance().models[0]
+		numberOfTasks = TasksStore.length
+		model = TasksStore.models[0]
 
 		expect(numberOfTasks).to.equal(oldNumberOfTasks + 1)  # Number of tasks in collection increased
 		expect(model.get('new')).to.be.true  # Created task has `new` attribute

@@ -4,20 +4,20 @@
 
 describe 'components/tasks', ->
 	render = ->
-		renderReactComponent Tasks, {collection: TasksCollection.getInstance()}
+		renderReactComponent Tasks, {collection: TasksStore}
 
 	before (done) ->
 		requireModule {
 				'components/tasks': 'Tasks',
 				'components/task': 'Task',
-				'collections/tasks': 'TasksCollection',
+				'stores/tasks': 'TasksStore',
 				'react': 'React'
 			}, ->
 			global.TestUtils = React.addons.TestUtils
 			done()
 
 	beforeEach (done) ->
-		TasksCollection.getInstance().reset([
+		TasksStore.reset([
 			{name: 'Task 1', project: 'Project 1', state: Task.STATE_UNPAID},
 			{name: 'Task 2', project: 'Project 2', state: Task.STATE_IN_PROGRESS},
 			{name: 'Task 3', project: 'Project 1', state: Task.STATE_NEW},
@@ -33,7 +33,7 @@ describe 'components/tasks', ->
 	it 'should have <Task> component for every task', (done) ->
 		[element, node] = render()
 		numberOfTaskComponents = TestUtils.scryRenderedComponentsWithType(element, Task).length
-		numberOfTaskModels = TasksCollection.getInstance().length
+		numberOfTaskModels = TasksStore.length
 		expect(numberOfTaskComponents).to.equal(numberOfTaskModels)
 		done()
 

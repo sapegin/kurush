@@ -4,11 +4,11 @@ define(function(require, exports, module) {
 	var Backbone = require('backbone');
 	var React = require('react');
 	var Projects = require('collections/projects');
-	var Tasks = require('collections/tasks');
+	var TasksStore = require('stores/tasks');
 	var IndexView = React.createFactory(require('components/index'));
 
 	Projects.getInstance().fetch();
-	Tasks.getInstance().fetch();
+	TasksStore.fetch();
 
 	module.exports = Backbone.Router.extend({
 		routes: {
@@ -16,7 +16,7 @@ define(function(require, exports, module) {
 		},
 
 		index: function() {
-			renderView(new IndexView({tasks: Tasks.getInstance()}));
+			renderView(new IndexView({tasks: TasksStore}));
 		}
 	});
 

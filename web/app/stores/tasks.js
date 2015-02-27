@@ -5,13 +5,28 @@ define(function(require, exports, module) {
 
 	var _ = require('lodash');
 	var Backbone = require('backbone');
+	var Dispatcher = require('dispatcher');
 	var Task = require('models/task');
 
-	var Tasks = Backbone.Collection.extend({
+	var TasksCollection = Backbone.Collection.extend({
 		model: Task,
 		localStorage: new Backbone.LocalStorage('Tasks'),
 
+		actions: {
+			createTask: function(payload) {
+				this.create({new: true}, {at: 0});
+			},
+
+			updateTask: function(payload) {
+				var model = payload.task;
+				model.set(payload.data, {update: true});
+				model.save();
+			}
+		},
+
 		initialize: function() {
+			this.dispatchToken = Dispatcher.registerActions(this.actions, this);
+
 			var statesOrder = [
 				Task.STATE_IN_PROGRESS,
 				Task.STATE_NOT_STARTED,
@@ -59,10 +74,9 @@ define(function(require, exports, module) {
 		}
 	});
 
-	// Singleton
-	Tasks.getInstance = _.memoize(function() {
-		return new Tasks();
-	});
+	var TasksStore = new TasksCollection();
 
-	module.exports = Tasks;
+	module.exports = TasksStore;
+	module.exports.TasksCollection = TasksCollection;
+
 });

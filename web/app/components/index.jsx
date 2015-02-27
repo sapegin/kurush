@@ -2,6 +2,7 @@ define(function(require, exports, module) {
 	'use strict';
 
 	var React = require('react');
+	var Dispatcher = require('dispatcher');
 	var Tasks = require('components/tasks');
 
 	/**
@@ -14,7 +15,7 @@ define(function(require, exports, module) {
 		},
 
 		createTask: function() {
-			this.props.tasks.create({new: true}, {at: 0});
+			Dispatcher.actions.createTask();
 		},
 
 		render: function() {
