@@ -9,9 +9,6 @@ define(function(require, exports, module) {
 	var Select = require('components/select');
 	var ProjectsStore = require('stores/projects');
 
-	/**
-	 * @jsx React.DOM
-	 */
 	module.exports = React.createExtendedClass({
 		displayName: 'Task',
 		propTypes: {

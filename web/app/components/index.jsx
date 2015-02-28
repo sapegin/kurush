@@ -5,9 +5,6 @@ define(function(require, exports, module) {
 	var Dispatcher = require('dispatcher');
 	var Tasks = require('components/tasks');
 
-	/**
-	 * @jsx React.DOM
-	 */
 	module.exports = React.createExtendedClass({
 		displayName: 'Index',
 		propTypes: {

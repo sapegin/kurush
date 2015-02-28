@@ -6,9 +6,6 @@ define(function(require, exports, module) {
 	var React = require('react');
 	var Task = require('components/task');
 
-	/**
-	 * @jsx React.DOM
-	 */
 	module.exports = React.createExtendedClass({
 		displayName: 'Tasks',
 		propTypes: {

@@ -5,9 +5,6 @@ define(function(require, exports, module) {
 
 	var React = require('react');
 
-	/**
-	 * @jsx React.DOM
-	 */
 	module.exports = React.createExtendedClass({
 		displayName: 'Combobox',
 		propTypes: {

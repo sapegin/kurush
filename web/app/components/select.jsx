@@ -6,9 +6,6 @@ define(function(require, exports, module) {
 	var _ = require('lodash');
 	var React = require('react');
 
-	/**
-	 * @jsx React.DOM
-	 */
 	module.exports = React.createExtendedClass({
 		displayName: 'Select',
 		propTypes: {
