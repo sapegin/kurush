@@ -13,8 +13,7 @@ module.exports = function(grunt) {
 				jshintrc: true
 			},
 			files: [
-				'app/**/*.js',
-				'!app/components/*.js'
+				'app/**/*.js'
 			]
 		},
 		coffeelint: {

@@ -29,7 +29,9 @@ define(function(require, exports, module) {
 		render: function() {
 			var listId = 'datalist_' + this._rootNodeID;
 			var options = this.props.items.map(function(value) {
-				return <option key={value}>{value}</option>
+				return (
+					<option key={value}>{value}</option>
+				);
 			});
 
 			return (

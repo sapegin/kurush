@@ -17,7 +17,9 @@ define(function(require, exports, module) {
 
 		render: function() {
 			var tasks = this.collection().map(function(task) {
-				return <Task model={task} key={task.cid}/>
+				return (
+					<Task model={task} key={task.cid}/>
+				);
 			});
 
 			return (

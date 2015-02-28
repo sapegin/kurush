@@ -29,7 +29,9 @@ define(function(require, exports, module) {
 
 		render: function() {
 			var options = _.map(this.props.items, function(name, value) {
-				return <option value={value} key={value}>{name}</option>
+				return (
+					<option value={value} key={value}>{name}</option>
+				);
 			});
 
 			return (
