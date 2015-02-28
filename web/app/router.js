@@ -3,11 +3,11 @@ define(function(require, exports, module) {
 
 	var Backbone = require('backbone');
 	var React = require('react');
-	var Projects = require('collections/projects');
+	var ProjectsStore = require('stores/projects');
 	var TasksStore = require('stores/tasks');
 	var IndexView = React.createFactory(require('components/index'));
 
-	Projects.getInstance().fetch();
+	ProjectsStore.fetch();
 	TasksStore.fetch();
 
 	module.exports = Backbone.Router.extend({

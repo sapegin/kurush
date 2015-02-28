@@ -1,11 +1,11 @@
 'use strict'
 
-describe 'collections/projects', ->
+describe 'stores/projects', ->
 	before (done) ->
-		requireModule {'collections/projects': 'Projects'}, done
+		requireModule {'stores/projects': 'ProjectsStore'}, done
 
 	it 'should create new model', (done) ->
-		projects = Projects.getInstance()
+		projects = new ProjectsStore.ProjectsCollection()
 		expect(projects.length).to.equal(0)
 		projects.create({name: 'Kurush'})
 		expect(projects.length).to.equal(1)

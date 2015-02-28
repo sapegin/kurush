@@ -8,7 +8,7 @@ define(function(require, exports, module) {
 	var Dispatcher = require('dispatcher');
 	var Combobox = require('components/combobox');
 	var Select = require('components/select');
-	var Projects = require('collections/projects').getInstance();
+	var ProjectsStore = require('stores/projects');
 
 	/**
 	 * @jsx React.DOM
@@ -35,8 +35,8 @@ define(function(require, exports, module) {
 			values.new = false;
 			values.state = +values.state;
 			Dispatcher.actions.updateTask({
-				task: this.model(),
-				data: values
+				model: this.model(),
+				attributes: values
 			});
 			this.toggleEditMode();
 		},
@@ -64,7 +64,7 @@ define(function(require, exports, module) {
 
 		renderEdit: function() {
 			var model = this.model();
-			var projects = _.pluck(Projects.toJSON(), 'name');
+			var projects = _.pluck(ProjectsStore.toJSON(), 'name');
 			var states = model.getSatesList();
 
 			return (

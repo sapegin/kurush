@@ -5,10 +5,10 @@ moment = require 'moment'
 
 describe 'models/task', ->
 	before (done) ->
-		requireModule {'models/task': 'Task', 'collections/projects': 'Projects'}, done
+		requireModule {'models/task': 'Task', 'stores/projects': 'ProjectsStore'}, done
 
 	beforeEach (done) ->
-		Projects.getInstance().reset()
+		ProjectsStore.reset()
 		done()
 
 	it 'isUuid() should check if given string is UUID', (done) ->
@@ -74,7 +74,7 @@ describe 'models/task', ->
 		done()
 
 	it 'should set project ID for existing project', (done) ->
-		project = Projects.getInstance().create({name: 'Kurush2'})
+		project = ProjectsStore.create({name: 'Kurush2'})
 		model = new Task({project: 'Kurush2'})
 		expect(model.get('project')).not.to.equal('Kurush2')
 		expect(model.getProjectName()).to.equal('Kurush2')

@@ -3,7 +3,6 @@
 define(function(require, exports, module) {
 	'use strict';
 
-	var _ = require('lodash');
 	var Backbone = require('backbone');
 	var Dispatcher = require('dispatcher');
 	var Task = require('models/task');
@@ -13,13 +12,22 @@ define(function(require, exports, module) {
 		localStorage: new Backbone.LocalStorage('Tasks'),
 
 		actions: {
-			createTask: function(payload) {
+			/**
+			 * Create a task.
+			 */
+			createTask: function() {
 				this.create({new: true}, {at: 0});
 			},
 
-			updateTask: function(payload) {
-				var model = payload.task;
-				model.set(payload.data, {update: true});
+			/**
+			 * Update given task.
+			 *
+			 * @param {Backbone.Model} params.model Task to update.
+			 * @param {Object} params.attributes New values.
+			 */
+			updateTask: function(params) {
+				var model = params.model;
+				model.set(params.attributes, {update: true});
 				model.save();
 			}
 		},
@@ -36,7 +44,7 @@ define(function(require, exports, module) {
 				Task.STATE_CLOSED
 			];
 			var stateToOrder = {};
-			_.each(statesOrder, function(state, order) {
+			statesOrder.forEach(function(state, order) {
 				stateToOrder[state] = order;
 			});
 			this.stateToOrder = stateToOrder;

@@ -6,7 +6,7 @@ define(function(require, exports, module) {
 	var _ = require('lodash');
 	var moment = require('moment');
 	var Backbone = require('backbone');
-	var Projects = require('collections/projects').getInstance();
+	var ProjectsStore = require('stores/projects');
 
 	module.exports = Backbone.Model.extend({
 		defaults: {
@@ -40,7 +40,7 @@ define(function(require, exports, module) {
 		},
 
 		getProjectName: function() {
-			var project = Projects.get(this.get('project'));
+			var project = ProjectsStore.get(this.get('project'));
 			return project && project.get('name');
 		},
 
@@ -59,7 +59,7 @@ define(function(require, exports, module) {
 		set: function(attributes, options) {
 			// Skip set('field', value) calls, maybe support them later
 			if (_.isObject(attributes)) {
-				attributes.project = this.replaceValueWithId(attributes.project, Projects);
+				attributes.project = this.replaceValueWithId(attributes.project, ProjectsStore);
 
 				// set({}, {update: true})
 				if (options && options.update) {
