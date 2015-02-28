@@ -5,7 +5,7 @@ moment = require 'moment'
 
 describe 'stores/tasks', ->
 	before (done) ->
-		requireModule {'stores/tasks': 'TasksStore', 'models/task': 'Task'}, done
+		requireModule {'stores/tasks': 'TasksStore', 'models/task': 'Task', 'dispatcher': 'Dispatcher'}, done
 
 	beforeEach (done) ->
 		@TasksStore = new TasksStore.TasksCollection()
@@ -45,8 +45,15 @@ describe 'stores/tasks', ->
 			])
 		done()
 
-	it 'should create new model', (done) ->
-		length = @TasksStore.length
-		@TasksStore.create({name: 'Do someting'})
-		expect(@TasksStore.length).to.equal(length + 1)
+	it 'actions.createTask() should create new model', (done) ->
+		numberOfTasksBefore = @TasksStore.length
+		Dispatcher.actions.createTask({name: 'Do someting'})
+		numberOfTasks = @TasksStore.length
+		expect(numberOfTasks).to.equal(numberOfTasksBefore + 1)
+		done()
+
+	it 'actions.updateTask() should update a model', (done) ->
+		model = TasksStore.create({name: 'Do someting'})
+		Dispatcher.actions.updateTask({model: model, attributes: {name: 'Do someting else'}})
+		expect(model.get('name')).to.equal('Do someting else')
 		done()
