@@ -3,7 +3,6 @@
 define(function(require, exports, module) {
 	'use strict';
 
-	var _ = require('lodash');
 	var React = require('react');
 	var Dispatcher = require('dispatcher');
 	var Combobox = require('components/combobox');
@@ -64,8 +63,8 @@ define(function(require, exports, module) {
 
 		renderEdit: function() {
 			var model = this.model();
-			var projects = _.pluck(ProjectsStore.toJSON(), 'name');
 			var states = model.getSatesList();
+			var projects = ProjectsStore.getNames();
 
 			return (
 				<li>
