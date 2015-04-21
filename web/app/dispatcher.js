@@ -19,7 +19,10 @@ define(function(require, exports, module) {
 				this.actions[action] = this.dispatchAction.bind(this, action);
 			}
 			return this.register(function(payload) {
-				actions[payload.actionType].call(context, payload);
+				var func = actions[payload.actionType];
+				if (func) {
+					func.call(context, payload);
+				}
 			});
 		},
 

@@ -16,7 +16,7 @@ define(function(require, exports, module) {
 			 * Create a task.
 			 */
 			createTask: function() {
-				this.create({new: true}, {at: 0});
+				this.create({}, {at: 0});
 			},
 
 			/**
@@ -57,11 +57,6 @@ define(function(require, exports, module) {
 		 *   - by change date
 		 */
 		comparator: function(a, b) {
-			// New tasks always first
-			if (a.get('new')) {
-				return -1;
-			}
-
 			var aState = a.get('state');
 			var bState = b.get('state');
 

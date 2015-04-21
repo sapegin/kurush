@@ -59,6 +59,12 @@ define(function(require, exports, module) {
 		set: function(attributes, options) {
 			// Skip set('field', value) calls, maybe support them later
 			if (_.isObject(attributes)) {
+
+				// State should be a number
+				if ('state' in attributes) {
+					attributes.state = +attributes.state;
+				}
+
 				attributes.project = this.replaceValueWithId(attributes.project, ProjectsStore);
 
 				// set({}, {update: true})

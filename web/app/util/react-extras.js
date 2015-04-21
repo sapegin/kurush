@@ -3,6 +3,7 @@ define(function(require, exports, module) {
 
 	var _ = require('lodash');
 	var React = require('react');
+	var StateStore = require('stores/state');
 
 	React.KurushMixin = {
 		get: function(field) {
@@ -26,6 +27,30 @@ define(function(require, exports, module) {
 
 		getAttrs: function() {
 			return _.omit(this.props, _.keys(this.constructor.defaultProps));
+		}
+	};
+
+	React.AppStateMixin = {
+		getInitialState: function() {
+			return this._getStateFromStore();
+		},
+
+		componentDidMount: function() {
+			StateStore.on('change', this._setStateFromStore);
+		},
+
+		componentWillUnmount: function() {
+			StateStore.off('change');
+		},
+
+		_getStateFromStore: function() {
+			return StateStore.toJSON();
+		},
+
+		_setStateFromStore: function() {
+			if (this.isMounted()) {
+				this.setState(this._getStateFromStore());
+			}
 		}
 	};
 

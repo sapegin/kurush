@@ -5,10 +5,12 @@ define(function(require, exports, module) {
 	var React = require('react');
 	var ProjectsStore = require('stores/projects');
 	var TasksStore = require('stores/tasks');
+	var StateStore = require('stores/state');
 	var IndexView = React.createFactory(require('components/index'));
 
 	ProjectsStore.fetch();
 	TasksStore.fetch();
+	StateStore.fetch();
 
 	module.exports = Backbone.Router.extend({
 		routes: {

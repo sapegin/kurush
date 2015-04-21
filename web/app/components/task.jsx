@@ -5,40 +5,39 @@ define(function(require, exports, module) {
 
 	var React = require('react');
 	var Dispatcher = require('dispatcher');
+	var ProjectsStore = require('stores/projects');
 	var Combobox = require('components/combobox');
 	var Select = require('components/select');
-	var ProjectsStore = require('stores/projects');
 
 	module.exports = React.createExtendedClass({
 		displayName: 'Task',
 		propTypes: {
 			model: React.PropTypes.object.isRequired
 		},
+		mixins: [
+			React.AppStateMixin
+		],
 
-		getInitialState: function() {
-			return {
-				edit: this.get('new')
-			};
+		isInEditMode: function() {
+			return this.state.editingTaskId === this.get('id');
 		},
 
-		toggleEditMode: function() {
-			this.setState({edit: !this.state.edit});
+		handleEdit: function(id) {
+			Dispatcher.actions.setEditingTaskId({id: this.get('id')});
 		},
 
-		save: function(event) {
+		handleSave: function(event) {
 			event.preventDefault();
 			var values = this.getFormData(event.target);
-			values.new = false;
-			values.state = +values.state;
 			Dispatcher.actions.updateTask({
 				model: this.model(),
 				attributes: values
 			});
-			this.toggleEditMode();
+			Dispatcher.actions.closeEditingTask();
 		},
 
 		render: function() {
-			if (this.state.edit) {
+			if (this.isInEditMode()) {
 				return this.renderEdit();
 			}
 			else {
@@ -53,7 +52,7 @@ define(function(require, exports, module) {
 			return (
 				<li>
 					{this.get('name')}, {model.getProjectName()}, {model.getStateName()}, {model.get('summ')}, {model.get('rate')}, {timeSpent} hrs
-					<button onClick={this.toggleEditMode} ref="edit">Edit</button>
+					<button onClick={this.handleEdit} ref="edit">Edit</button>
 				</li>
 			);
 		},
@@ -65,7 +64,7 @@ define(function(require, exports, module) {
 
 			return (
 				<li>
-					<form onSubmit={this.save} ref="form">
+					<form onSubmit={this.handleSave} ref="form">
 						<div>
 							<input type="text" defaultValue={model.get('name')} ref="name" name="name" placeholder="Title" tabIndex="1" autoFocus/>
 							<Combobox items={projects} value={model.getProjectName()} ref="project" placeholder="Project" name="project" tabIndex="2"/>
