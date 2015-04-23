@@ -1,39 +1,33 @@
 // Author: Artem Sapegin http://sapegin.me, 2015
 
-define(function(require, exports, module) {
-	'use strict';
+import _ from 'lodash';
+import { Dispatcher } from 'flux';
 
-	var _ = require('lodash');
-	var Dispatcher = require('flux').Dispatcher;
+export function AppDispatcher() {
+	Dispatcher.call(this);
+}
 
-	function AppDispatcher() {
-		Dispatcher.call(this);
-	}
+AppDispatcher.prototype = _.create(Dispatcher.prototype, {
+	constructor: AppDispatcher,
+	actions: {},
 
-	AppDispatcher.prototype = _.create(Dispatcher.prototype, {
-		constructor: AppDispatcher,
-		actions: {},
-
-		registerActions: function(actions, context) {
-			for (var action in actions) {
-				this.actions[action] = this.dispatchAction.bind(this, action);
-			}
-			return this.register(function(payload) {
-				var func = actions[payload.actionType];
-				if (func) {
-					func.call(context, payload);
-				}
-			});
-		},
-
-		dispatchAction: function(action, payload) {
-			payload = payload || {};
-			payload.actionType = action;
-			this.dispatch(payload);
+	registerActions(actions, context) {
+		for (const action in actions) {
+			this.actions[action] = this.dispatchAction.bind(this, action);
 		}
-	});
+		return this.register(function(payload) {
+			const func = actions[payload.actionType];
+			if (func) {
+				func.call(context, payload);
+			}
+		});
+	},
 
-	module.exports = new AppDispatcher();
-	module.exports.AppDispatcher = AppDispatcher;
-
+	dispatchAction(action, payload) {
+		payload = payload || {};
+		payload.actionType = action;
+		this.dispatch(payload);
+	}
 });
+
+export default new AppDispatcher();

@@ -3,40 +3,7 @@
 module.exports = function(grunt) {
 	'use strict';
 
-	require('tamia-grunt')(grunt, {
-		tamia: {
-			author: 'Artem Sapegin, http://sapegin.me',
-			bower: false
-		},
-		jshint: {
-			options: {
-				jshintrc: true
-			},
-			files: [
-				'app/**/*.js'
-			]
-		},
-		coffeelint: {
-			options: {
-				configFile: 'coffeelint.json'
-			},
-			tests: [
-				'tests/specs/*.coffee'
-			]
-		},
-		react: {
-			views: {
-				files: [
-					{
-						expand: true,
-						cwd: 'app/components',
-						src: ['**/*.jsx'],
-						dest: 'app/components',
-						ext: '.js'
-					}
-				]
-			}
-		},
+	grunt.initConfig({
 		mochaTest: {
 			test: {
 				options: {
@@ -51,17 +18,7 @@ module.exports = function(grunt) {
 				]
 			}
 		},
-		watch: {
-			react: {
-				options: {
-					atBegin: true
-				},
-				files: 'app/components/*.jsx',
-				tasks: ['react']
-			}
-		}
 	});
 
-	grunt.registerTask('default', ['styles', 'react']);
-	grunt.registerTask('test', ['jshint', 'coffeelint', 'react', 'mochaTest']);
+	grunt.registerTask('test', ['mochaTest']);
 };

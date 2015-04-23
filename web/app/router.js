@@ -1,32 +1,26 @@
-define(function(require, exports, module) {
-	'use strict';
+import Backbone from 'backbone';
+import ProjectsStore from './stores/ProjectsStore';
+import TasksStore from './stores/TasksStore';
+import StateStore from './stores/StateStore';
+import Index from './components/Index';
 
-	var Backbone = require('backbone');
-	var React = require('react');
-	var ProjectsStore = require('stores/projects');
-	var TasksStore = require('stores/tasks');
-	var StateStore = require('stores/state');
-	var IndexView = React.createFactory(require('components/index'));
+ProjectsStore.fetch();
+TasksStore.fetch();
+StateStore.fetch();
 
-	ProjectsStore.fetch();
-	TasksStore.fetch();
-	StateStore.fetch();
+export default Backbone.Router.extend({
+	routes: {
+		'': 'index'
+	},
 
-	module.exports = Backbone.Router.extend({
-		routes: {
-			'': 'index'
-		},
-
-		index: function() {
-			renderView(new IndexView({tasks: TasksStore}));
-		}
-	});
-
-	// Helpers
-	var renderView = function (view) {
-		var root = document.body;
-		React.unmountComponentAtNode(root);
-		React.render(view, root);
-	};
-
+	index() {
+		renderView(<Index tasks={TasksStore}/>);
+	}
 });
+
+// Helpers
+var renderView = function (view) {
+	var root = document.getElementById('app');
+	React.unmountComponentAtNode(root);
+	React.render(view, root);
+};
