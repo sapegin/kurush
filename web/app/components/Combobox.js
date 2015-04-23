@@ -1,5 +1,7 @@
 // Author: Artem Sapegin http://sapegin.me, 2015
 
+import newId from '../util/newid';
+
 const PT = React.PropTypes;
 
 export default React.createExtendedClass({
@@ -21,7 +23,7 @@ export default React.createExtendedClass({
 	},
 
 	render() {
-		const listId = 'datalist_' + this._rootNodeID;  // @todo: Doesn’t work in React 0.13
+		const listId = newId();
 		const options = this.props.items.map((value) => {
 			return (
 				<option key={value}>{value}</option>
