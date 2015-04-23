@@ -1,6 +1,6 @@
 // Author: Artem Sapegin http://sapegin.me, 2015
 
-import newId from '../util/newid';
+import newId from '../utils/newid';
 
 const PT = React.PropTypes;
 

@@ -5,4 +5,4 @@ import 'backbone';
 import 'react';
 import 'backbone.localstorage';
 import 'react.backbone';
-import './util/react-extras';
+import './utils/react-extras';
