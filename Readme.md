@@ -9,7 +9,7 @@
 * Works with local documents (PDF, JPEG, PNG)
 * OCR in multiple languages (EN, DE, ES, RU)
 * Translates all content to English
-* Generates concise English summaries
+* Generates a one-line English title and concise English summary
 * Indexes content for full‑text search and semantic (meaning‑based) search
 * Serves results to a local Astro/React frontend
 * Privacy-first, 100% local, no telemetry
